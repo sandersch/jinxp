@@ -1,0 +1,17 @@
+name: jinx
+version: 0.1.0
+
+authors:
+  - Benjamin Clos <benjamin.clos+github@gmail.com>
+
+targets:
+  jinx:
+    main: src/jinx.cr
+
+crystal: 0.35.1
+
+license: MIT
+
+dependencies:
+  admiral:
+    github: jwaldrip/admiral.cr
