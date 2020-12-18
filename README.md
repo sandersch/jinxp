@@ -7,22 +7,24 @@ single binary to build a jinx repo
 ```
 curl -s https://api.github.com/repos/elanthia-online/jinxp/releases/latest \
   | grep browser_download_url \
-  | grep linux64 \
+  | grep jinxp \
   | cut -d '"' -f 4 \
   | wget -qi -
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+jinxp --help
+```
 
 ## Development
 
-TODO: Write development instructions here
+clone this repo, make a pr
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/jinx/fork>)
+1. Fork it (<https://github.com/elanthia-online/jinx/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -30,4 +32,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [your-name-here](https://github.com/your-github-user) - creator and maintainer
+- [Ondreian](https://github.com/ondreian) - creator and maintainer
