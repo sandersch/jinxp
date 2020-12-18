@@ -1,3 +1,4 @@
+require "benchmark"
 require "./manifest"
 
 module Jinx
@@ -25,12 +26,18 @@ module Jinx
     end
 
     def execute()
-      files.each {|asset|
-        @manifest.add_asset(build: self, asset: asset)
+      ms = Benchmark.realtime {
+        files.each {|asset|
+          @manifest.add_asset(build: self, asset: asset)
+        }
+
+        File.write(File.join(@output, "manifest.json"), 
+          @manifest.to_json)
       }
 
-      File.write(File.join(@output, "manifest.json"), 
-        @manifest.to_json)
+      puts "built %s assets in %s" % [
+        @manifest.available.size,
+        ms]
     end
   end
 end

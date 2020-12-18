@@ -5,8 +5,8 @@ authors:
   - Benjamin Clos <benjamin.clos+github@gmail.com>
 
 targets:
-  jinx:
-    main: src/jinx.cr
+  jinxp:
+    main: src/jinxp.cr
 
 crystal: 0.35.1
 

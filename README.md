@@ -1,10 +1,16 @@
-# jinx
+# jinxp
 
-TODO: Write a description here
+single binary to build a jinx repo
 
 ## Installation
 
-TODO: Write installation instructions here
+```
+curl -s https://api.github.com/repos/elanthia-online/jinxp/releases/latest \
+  | grep browser_download_url \
+  | grep linux64 \
+  | cut -d '"' -f 4 \
+  | wget -qi -
+```
 
 ## Usage
 
