@@ -1,18 +1,14 @@
-# jinxp
+# jinxp / jinx packager
 
-single binary to build a jinx repo
+single [crystal](http://crystal-lang.org/) binary to package a jinx repo for publishing
 
-## Installation
+## Usage / Continuous Deployment
 
-```
-curl -s https://api.github.com/repos/elanthia-online/jinxp/releases/latest \
-  | grep browser_download_url \
-  | grep jinxp \
-  | cut -d '"' -f 4 \
-  | wget -qi -
-```
+There are several options for CD, in this repo you will find an example `netlify.toml` for your convenience.
 
-## Usage
+Basically anything that allows you to upload your `dist/` folder will work though.
+
+## Usage / CLI
 
 ```
 jinxp --help
