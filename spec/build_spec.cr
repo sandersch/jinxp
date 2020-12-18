@@ -15,7 +15,14 @@ describe Jinx::Build do
 
     build_2.execute()
 
-    pp build_2.manifest.to_json
+    pp build_2
+
+    build_2.manifest.available.size.should eq 2
+    noop = build_2.manifest.available.find {|asset|
+      asset.file.includes?("noop.lic")
+    }
+    fail "noop.lic did not compile" unless noop
+    noop.tags.size.should eq 3
   end
 end
 

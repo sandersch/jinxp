@@ -20,14 +20,17 @@ module Jinx
       }
     end
 
-    def assets()
+    def files()
       Dir.glob File.join(@input, "*")
     end
 
     def execute()
-      assets.each {|asset|
+      files.each {|asset|
         @manifest.add_asset(build: self, asset: asset)
       }
+
+      File.write(File.join(@output, "manifest.json"), 
+        @manifest.to_json)
     end
   end
 end

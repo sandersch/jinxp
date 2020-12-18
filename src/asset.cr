@@ -6,11 +6,14 @@ module Jinx
   class Asset
     include JSON::Serializable
 
-    property header      : String?
-    property md5         : String
-    property last_commit : String
-    property tags        : Array(String)
     property file        : String
+    property md5         : String
+    property last_commit : Int32?
+    property header      : String?
+    property tags        : Array(String)
+    property version     : String?
+    property author      : String?
+    
 
     def initialize(build : Build, file : String)
       source       = File.read(file)
@@ -18,16 +21,29 @@ module Jinx
       @last_commit = _fetch_last_commit(file)
       @file        = "/assets/%s" % File.basename(file)
 
-      parser  = HeaderParser.new(
+      File.copy(file, File.join(build.assets, File.basename(file)))
+
+      if File.extname(file) == ".lic"
+        parser   = headers(build, file, source)
+        @tags    = parser.tags
+        @header  = parser.file
+        @version = parser.version
+        @author  = parser.author
+      else
+        @tags = [] of String
+      end
+    end
+
+    def headers(build : Build, file : String, source : String)
+      HeaderParser.new(
         build:  build, 
         file:   file, 
         source: source)
-      @tags   = parser.tags
-      @header = parser.file
     end
 
     def _fetch_last_commit(file)
-      `git log -1 --date=unix --format="%ad" -- #{file}`
+      ts = `git log -1 --date=unix --format="%ad" -- #{file}`.strip
+      ts.empty? ? nil : ts.to_i
     end
   end
 end
