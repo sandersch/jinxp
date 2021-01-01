@@ -1,6 +1,6 @@
 name: Spec
 
-on: push
+runs-on: push
 
 jobs:
   spec:
